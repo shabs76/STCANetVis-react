@@ -1,33 +1,72 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import _ from 'lodash';
 import './networkPlotGre.css';
 // import { networkGrahGen } from '../../funs/networkGraphGen';
 import { bubbleChat } from '../../funs/bubbleChatGen';
+import { initialData } from '../../funs/specials';
 
 function NetworkPlotGra({
     statx
 }) {
+    const ingInpt = useRef(null);
+
     let initKey = false;
     if (statx === 'full') {
         initKey = true;
     }
+
     const [showHideKey, setShowHideKey] = useState(initKey);
     // const DataChge =  useSelector((state) => state.DataSetReduc);
     const DatasetsArr = useSelector((state) => state.DataSetReduc.datasetsInfo);
-    console.log(DatasetsArr);
+    let initDT = initialData
+    if (localStorage.getItem("dataInit")) {
+        initDT = JSON.parse(localStorage.getItem("dataInit"))
+    } else {
+        localStorage.setItem("dataInit", JSON.stringify(initDT))
+    }
+    const [exData, setExdata] = useState(initDT)
     useEffect(() => {
+        
         if (typeof (DatasetsArr.data) !== 'undefined') {
             // networkGrahGen(DataChge.chatsData.netData);
-            bubbleChat(DatasetsArr.data);
+            bubbleChat(DatasetsArr.data, exData);
         }
-    }, [DatasetsArr.data])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [DatasetsArr.data, exData.length])
     let nomStyles = {display: 'flex'};
     if (initKey) {
         nomStyles = {
-            display: 'flex',
+            display: 'none',
             position: 'relative'
         }
     }
+
+    const OpenFiles = () => {
+        ingInpt.current?.click();
+    }
+
+    const delFun = (namex = "") => {
+        if (_.isArray(exData)) {
+            const holdTem = []
+            // const nArr = []
+            for (let d = 0; d < exData.length; d++) {
+                if (namex !== exData[d].name) {
+                    holdTem.push(exData[d])
+                } 
+            }
+
+            setExdata(holdTem)
+            localStorage.setItem("dataInit", JSON.stringify(holdTem))
+        }
+    }
+
+    const restoreData = () => {
+        console.log('hello');
+        localStorage.removeItem("dataInit")
+        setExdata(initialData[0])
+    }
+    const exTDataName = []
     return (
         <div className="NetworkPlotGraMain">
             <h3 className="NetworkPlotGRaHeader">
@@ -129,6 +168,39 @@ function NetworkPlotGra({
 
             <div className="PlotHolderNetworkPlotGra">
                 <div className="tooltipNetwork"></div>
+            </div>
+            <div className="SettingsBubbleComponents">
+                <div className="SettingsbubbleButtonHolder">
+                <input style={{ display: 'none' }}  type="file" ref={ingInpt} name="image1" accept=".csv" multiple />
+                    <button className="SettingsbubbleButton" onClick={()=> OpenFiles()}>Upload Datasets</button>
+                </div>
+                <div className="DatasetsHistoryHolder">
+                    <div className="DatasetHistHeader" onClick={()=> restoreData()}>History</div>
+                    {
+                        _.isArray(exData) && !_.isEmpty(exData)?
+                        exData.map((vals)=> {
+
+                            if (exTDataName.indexOf(vals.name) === -1) {
+                                exTDataName.push(vals.name)
+                                return <div className="DatasetOntheHist">
+                                <div className="datasetHistName">
+                                    {
+                                        vals.name
+                                    }
+                                </div>
+                                <button className="DeleteDatasetbutton" onClick={()=> delFun(vals.name)}>
+                                    <span className="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
+                            }
+                            return <></>
+                            
+                            })
+                        : <></>
+                    }
+                </div>
             </div>
         </div>
     );

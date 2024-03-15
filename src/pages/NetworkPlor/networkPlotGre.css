@@ -11,7 +11,7 @@
 }
 
 .PlotHolderNetworkPlotGra{
-    width: 100%;
+    width: calc(100% - 150px);
     padding: 0px;
     border-radius: 10px;
     margin-top: 0px;
@@ -158,4 +158,69 @@ svg line.link {
 .KeyDiscrbNetwork{
     font-size: 14px;
     font-weight: 500;   
+}
+
+
+.SettingsBubbleComponents{
+    width: 180px;
+    position: absolute;
+    top: 50px;
+    right: -20px;
+    background-color: #F9F9F9;
+    padding-top: 10px;
+    border-radius: 7px;
+    height: 310px;
+    padding-left: 5px;
+}
+
+.SettingsbubbleButtonHolder{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.SettingsbubbleButton{
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.DatasetsHistoryHolder{
+    margin-top: 15px;
+    height: 240px;
+    overflow-y: auto;
+}
+
+.DatasetHistHeader{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.DatasetOntheHist{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.datasetHistName{
+    font-size: 14px;
+    width: calc(100% - 33px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 7px;
+}
+
+.DeleteDatasetbutton{
+    background-color: transparent;
+    width: 32px;
+    padding: 0;
+}
+
+.DeleteDatasetbutton span{
+    color: #3b5998;
+    font-size: 22px;
 }

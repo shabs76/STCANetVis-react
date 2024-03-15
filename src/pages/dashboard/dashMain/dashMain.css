@@ -18,13 +18,13 @@
 
 .leftSectDash{
     /* width: calc(50% - 7px); */
-    width: 50%;
+    width: 45%;
     min-width: 350px;
 }
 
 .RightSectDash{
     /* width: calc(50% - 7px); */
-    width: 50%;
+    width: 55%;
     min-width: 350px;
 }
 

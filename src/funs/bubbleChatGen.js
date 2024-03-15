@@ -1,36 +1,35 @@
 import * as d3 from 'd3-v6';
 import _ from 'lodash';
 
-export const bubbleChat = (dataz = []) => {
+export const bubbleChat = (dataz = [], data2 = []) => {
     if (!_.isArray(dataz)) {
         return
     }
     // create datasets "proxy":"http://localhost:8000",
-    const datasets = []
+    // const datasets = []
+    const datasets = [
+        
+
+    ];
     for (let index = 0; index < dataz.length; index++) {
         if (!_.isEmpty(dataz[index].bubble)) {
-            datasets.push(dataz[index].bubble)
+            // datasets.push(dataz[index].bubble)
         }   
+    }
+
+    for (let idc = 0; idc < data2.length; idc++) {
+        datasets.push(data2[idc])
     }
     const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
     const maxXValue = d3.max(datasets, d => d.time);
-    // datasets = [
-    //     { name: "Medi_sea", color: "blue", scalabilityInteraction: 0.185, scalabilityVisualization: 0.556, rows: 12000 },
-    //     { name: "Mooloolaba", color: "yellow", scalabilityInteraction: 0.185, scalabilityVisualization: 0.556 , rows: 32000 },
-    //     { name: "East Atlantic", color: "orange", scalabilityInteraction: 0.185, scalabilityVisualization: 0.556, rows: 42000  },
-    //     { name: "Weipa", color: "gray", scalabilityInteraction: 0.185, scalabilityVisualization: 0.556, rows: 22000  },
-    //     { name: "Bowen", color: "brown", scalabilityInteraction: 0.185, scalabilityVisualization: 0.556, rows: 52000  },
-    //     { name: "Urangan Tide", color: "green", scalabilityInteraction: 0.185, scalabilityVisualization: 0.556, rows: 62000  },
-    //     { name: "Karumba", color: "pink", scalabilityInteraction: 0.185, scalabilityVisualization: 0.556, rows: 82000  },
-    //     { name: "Southport", color: "purple", scalabilityInteraction: 0.185, scalabilityVisualization: 0.556, rows: 120000  }
-    //   ];
+    
       // clear old data
       const svgWidth = d3.select(".PlotHolderNetworkPlotGra").node().clientWidth;
       d3.select(".PlotHolderNetworkPlotGra").selectAll("*").remove();
       d3.select(".PlotHolderNetworkPlotGra").html('<div className="tooltipNetwork"></div>');
       /* SVG frame creation */
       const w = svgWidth,
-      h = svgWidth*0.53;
+      h = svgWidth*0.6;
       // Dimensions and margins for the SVG
       const margin = { top: 55, right: 20, bottom: 50, left: 50 };
       const width = w - margin.left - margin.right;
@@ -84,9 +83,10 @@ export const bubbleChat = (dataz = []) => {
         .enter()
         .append("circle")
         .attr("cx", d => xScale(d.time)) // Randomize X position for now
-        .attr("cy", d => yScale(d.scalabilityVisualization))
+        .attr("cy", d => yScale(d.scalabilityInteraction))
         .attr("r", d => radiusCal(d.rows))
-        .attr("fill", (d, i) => colorScale(i))
+        .attr("stroke", "#333333")
+        .attr("fill", (d, i) => typeof (d.color) == "string" ? d.color : colorScale(i))
         .attr("opacity", 0.75)
         .on("mouseover", function(event, d) {
           // Add tooltip showing dataset name and scalability values
@@ -137,20 +137,20 @@ export const bubbleChat = (dataz = []) => {
 
 const radiusCal = (rows) => {
     if (rows < 10000) {
-        return 20
+        return 10
     } else if (rows < 20000) {
-        return 30
+        return 15
     } else if (rows < 50000) {
-        return 45
+        return 20
     } else if (rows < 70000) {
-        return 55
+        return 27
     } else if (rows < 85000) {
-        return 65
-    } else if (rows < 90000) {
-        return 70
-    } else if (rows > 90000) {
-        return 75
-    } else {
         return 35
+    } else if (rows < 90000) {
+        return 40
+    } else if (rows > 90000) {
+        return 50
+    } else {
+        return 18
     }
 } 
