@@ -70,8 +70,42 @@ function NetworkPlotGra({
     return (
         <div className="NetworkPlotGraMain">
             <h3 className="NetworkPlotGRaHeader">
-                Scalability Visualization 
+                Scalability view
             </h3>
+            <div className="NewBubbleKeyHolder">
+                <div className="KeyElemHolderbubble">
+                    <div className="bubbleColorDiv" style={{backgroundColor: "blue"}} />
+                    <div className="bubbleNameKeyName">Medi_sea</div>
+                </div>
+                <div className="KeyElemHolderbubble">
+                    <div className="bubbleColorDiv" style={{backgroundColor: "yellow"}} />
+                    <div className="bubbleNameKeyName">Mooloolaba</div>
+                </div>
+                <div className="KeyElemHolderbubble">
+                    <div className="bubbleColorDiv" style={{backgroundColor: "orange"}} />
+                    <div className="bubbleNameKeyName">East Atlantic</div>
+                </div>
+                <div className="KeyElemHolderbubble">
+                    <div className="bubbleColorDiv" style={{backgroundColor: "gray"}} />
+                    <div className="bubbleNameKeyName">Weipa</div>
+                </div>
+                <div className="KeyElemHolderbubble">
+                    <div className="bubbleColorDiv" style={{backgroundColor: "brown"}} />
+                    <div className="bubbleNameKeyName">Bowen</div>
+                </div>
+                <div className="KeyElemHolderbubble">
+                    <div className="bubbleColorDiv" style={{backgroundColor: "green"}} />
+                    <div className="bubbleNameKeyName">Urangan Tide</div>
+                </div>
+                <div className="KeyElemHolderbubble">
+                    <div className="bubbleColorDiv" style={{backgroundColor: "pink"}} />
+                    <div className="bubbleNameKeyName">Karumba</div>
+                </div>
+                <div className="KeyElemHolderbubble">
+                    <div className="bubbleColorDiv" style={{backgroundColor: "purple"}} />
+                    <div className="bubbleNameKeyName">Southport</div>
+                </div>
+            </div>
             <div className="KeySectionHolderWithPosAb" style={initKey ? {height: 'auto'} : {}}>
                 <button style={initKey ? {display: 'none'} : {display: 'none'}}  onClick={() => setShowHideKey(true)} type="button" className="GraphKeyToggleButtonNetGraph">
                     <span className="material-symbols-outlined">

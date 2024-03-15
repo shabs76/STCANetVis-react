@@ -222,7 +222,7 @@ function PredictionPlot({
                     </div>
                 </div>
                 <h3 className="HeadNamePredictionPlot">
-                    Prediction Visualization 
+                    Prediction view
                 </h3>
                 <div className="ButtonsNSliderALL">
                     <div className="ControlsPredictions">

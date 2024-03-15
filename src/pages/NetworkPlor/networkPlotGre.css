@@ -224,3 +224,36 @@ svg line.link {
     color: #3b5998;
     font-size: 22px;
 }
+
+/* KEYS */
+.NewBubbleKeyHolder{
+    width: calc(100% - 150px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: flex-start;
+    padding-left: 40px;
+    padding-right: 20px;
+}
+.KeyElemHolderbubble{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+.bubbleColorDiv{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #222;
+    margin-right: 5px;
+}
+
+.bubbleNameKeyName{
+    font-size: 14px;
+}

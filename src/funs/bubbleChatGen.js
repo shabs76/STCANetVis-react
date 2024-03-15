@@ -66,7 +66,8 @@ export const bubbleChat = (dataz = [], data2 = []) => {
         .attr("x", width / 2)
         .attr("y", height + margin.top - 18)
         .attr("text-anchor", "middle")
-        .text("Time");
+        .attr("font-size", 13)
+        .text("Time (Seconds)");
 
         // Add Y axis label
       svg.append("text")
@@ -74,8 +75,9 @@ export const bubbleChat = (dataz = [], data2 = []) => {
         .attr("x", -height / 2)
         .attr("y", -margin.left)
         .attr("dy", "1em")
+        .attr("font-size", 13)
         .attr("text-anchor", "middle")
-        .text("Scalability of Visualization");
+        .text("Scalability of Visualization and Interactions");
   
       // Add bubbles for each dataset
       svg.selectAll("circle")

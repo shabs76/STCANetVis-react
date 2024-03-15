@@ -395,7 +395,7 @@ function TopNav() {
                                                 online_prediction
                                             </span>
                                         </div>
-                                        <div className="textHolderNaviButton">Prediction Visualization</div>
+                                        <div className="textHolderNaviButton">Prediction View</div>
                                         <div className="arrowHolderActiveSideNavButton">
                                             <span className="material-symbols-outlined">
                                                 arrow_forward_ios
@@ -429,7 +429,7 @@ function TopNav() {
                                                 hub
                                             </span>
                                         </div>
-                                        <div className="textHolderNaviButton">Scalability Visualization</div>
+                                        <div className="textHolderNaviButton">Scalability view</div>
                                         <div className="arrowHolderActiveSideNavButton">
                                             <span className="material-symbols-outlined">
                                                 arrow_forward_ios

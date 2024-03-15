@@ -58,7 +58,7 @@ function DataUncentinityPlot({
         <div className="DataUncentinityPlotMain">
             <div className="PlotHeaderDataUncentinity">
                 <h3 className="HeadNameDataUncentinity">
-                    Uncertainty of Ensemble Data Visualization
+                    Uncertainty view
                 </h3>
                 <div className="ButtonsNSliderALL">
                     <div className="ControlsCandleChart">
