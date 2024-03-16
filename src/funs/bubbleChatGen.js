@@ -49,7 +49,7 @@ export const bubbleChat = (dataz = [], data2 = []) => {
   
       // Y scale for scalability values
       const yScale = d3.scaleLinear()
-        .domain([0, 1]) // Range of scalability values
+        .domain([0, 2]) // Range of scalability values
         .range([height, 0]);
   
       // Add X axis

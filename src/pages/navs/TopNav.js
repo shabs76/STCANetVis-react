@@ -538,7 +538,7 @@ function TopNav() {
                                                 R_square:
                                             </div>
                                             <div className="OptimazationValueSizeNav">
-                                                {cureeInf.acc }
+                                                {cureeInf.acc/10 }
                                             </div>
                                         </div>
                                         <div className="OptimazationRowDivSideNav">
@@ -547,7 +547,7 @@ function TopNav() {
                                             </div>
                                             <div className="OptimazationValueSizeNav">
                                                 {
-                                                    cureeInf.mae
+                                                    cureeInf.mae/10
                                                 }
                                             </div>
                                         </div>
@@ -557,7 +557,7 @@ function TopNav() {
                                             </div>
                                             <div className="OptimazationValueSizeNav">
                                                 {
-                                                    cureeInf.rsme
+                                                    cureeInf.rsme/10
                                                 }
                                             </div>
                                         </div>
