@@ -80,13 +80,14 @@ export const bubbleChat = (dataz = [], data2 = []) => {
         .text("Scalability of Visualization and Interactions");
   
       // Add bubbles for each dataset
-      svg.selectAll("circle")
+      svg.selectAll("ellipse")
         .data(datasets)
         .enter()
-        .append("circle")
+        .append("ellipse")
         .attr("cx", d => xScale(d.time)) // Randomize X position for now
         .attr("cy", d => yScale(d.scalabilityInteraction))
-        .attr("r", d => radiusCal(d.rows))
+        .attr("rx", d => radiusCal(d.rows))
+        .attr("ry", d => radiusCal(d.rows*0.1))
         .attr("stroke", "#333333")
         .attr("fill", (d, i) => typeof (d.color) == "string" ? d.color : colorScale(i))
         .attr("opacity", 0.75)
@@ -141,8 +142,8 @@ const radiusCal = (rows) => {
     if (rows < 10000) {
         return 10
     } else if (rows < 20000) {
-        return 15
-    } else if (rows < 50000) {
+        return 16
+    } else if (rows < 30000) {
         return 20
     } else if (rows < 70000) {
         return 27

@@ -30,7 +30,7 @@ function NetworkPlotGra({
         
         if (typeof (DatasetsArr.data) !== 'undefined') {
             // networkGrahGen(DataChge.chatsData.netData);
-            bubbleChat(DatasetsArr.data, exData);
+            bubbleChat(DatasetsArr.data, initialData);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [DatasetsArr.data, exData.length])
