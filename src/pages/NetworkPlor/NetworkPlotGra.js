@@ -72,6 +72,30 @@ function NetworkPlotGra({
             <h3 className="NetworkPlotGRaHeader">
                 Scalability view
             </h3>
+            <div className="keyTooBobble">
+                <div className="BubleContHolder">
+                    <div className="key2BubbleC">
+                        <div className="buubleCirleCont"/>
+                        <div className="bubbleNameKey2">Below 0.4</div>
+                    </div>
+                    <div className="key2BubbleC">
+                        <div className="buubleCirleCont" style={{width: "32px", height: "20px"}}/>
+                        <div className="bubbleNameKey2">0.41 - 0.5</div>
+                    </div>
+                    <div className="key2BubbleC">
+                        <div className="buubleCirleCont" style={{width: "40px", height: "26px"}} />
+                        <div className="bubbleNameKey2">0.51 - 1</div>
+                    </div>
+                    <div className="key2BubbleC">
+                        <div className="buubleCirleCont" style={{width: "50px", height: "30px"}}/>
+                        <div className="bubbleNameKey2">1.1 - 1.5</div>
+                    </div>
+                    <div className="key2BubbleC">
+                        <div className="buubleCirleCont" style={{width: "60px", height: "40px"}}/>
+                        <div className="bubbleNameKey2">1.51 - 2</div>
+                    </div>
+                </div>
+            </div>
             <div className="NewBubbleKeyHolder">
                 <div className="KeyElemHolderbubble">
                     <div className="bubbleColorDiv" style={{backgroundColor: "blue"}} />

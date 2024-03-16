@@ -257,3 +257,36 @@ svg line.link {
 .bubbleNameKeyName{
     font-size: 14px;
 }
+
+.BubleContHolder{
+    width: calc(100% - 150px);
+    padding-left: 40px;
+    margin-bottom: 15px;
+}
+
+.BubleContHolder {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.key2BubbleC{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.buubleCirleCont{
+    width: 20px;
+    height: 12px;
+    border: #222 1px solid;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.bubbleNameKey2{
+    font-size: 14px;
+    font-weight: 500;
+}
