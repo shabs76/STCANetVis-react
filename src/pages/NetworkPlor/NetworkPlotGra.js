@@ -61,7 +61,7 @@ function NetworkPlotGra({
         dispatch(activatePopup('loading', { text: 'loading '+fName+' dataset...' }));
         setTimeout(()=>{
             dispatch(deactivatePopup());
-            processDataUp();
+            processDataUp(fName);
         }, Math.ceil(Math.random() * 3454)+1500);
 
         
