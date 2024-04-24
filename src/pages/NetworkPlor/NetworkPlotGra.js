@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 import './networkPlotGre.css';
 // import { networkGrahGen } from '../../funs/networkGraphGen';
 import { bubbleChat } from '../../funs/bubbleChatGen';
 import { initialData } from '../../funs/specials';
+import { activatePopup, deactivatePopup } from '../../redux/action/popupActions';
 
 function NetworkPlotGra({
     statx
 }) {
+    const dispatch = useDispatch();
     const ingInpt = useRef(null);
 
     let initKey = false;
@@ -46,6 +48,99 @@ function NetworkPlotGra({
         ingInpt.current?.click();
     }
 
+    const uploadDataset = (e) => {
+        if (!_.isObject(e) || _.isEmpty(e)) {
+            return 0;
+        }
+
+        dispatch(activatePopup('loading', { text: 'loading dataset...' }));
+
+        
+        
+        const fName = removeFileExtension(e[0].name);
+        dispatch(activatePopup('loading', { text: 'loading '+fName+' dataset...' }));
+        setTimeout(()=>{
+            dispatch(deactivatePopup());
+            processDataUp();
+        }, Math.ceil(Math.random() * 3454)+1500);
+
+        
+    }
+
+    const processDataUp = (fName) => {
+        const sampleNames = [
+            "Medi_sea", "Mooloolaba", "East Atlantic", "Weipa", "Bowen", "Urangan Tide", "Karumba", "Southport",
+        ];
+        let tempHold = [];
+        // loop to check if name exists
+        let dtCapture = [];
+        let dtCapture2 = [];
+        let found = false;
+        const genNm = Math.ceil(Math.random() * 16);
+        for (let index = 0; index < initialData.length; index++) {
+            const element = initialData[index];
+            const element2 = {...element};
+            if (element.name === fName) {
+                console.log(element);
+                found = true;
+                dtCapture.push(element);
+                element2.rows = element2.rows*1.092;
+                element2.scalabilityInteraction = element2.scalabilityInteraction*1.063;
+                element2.name = element2.name+"("+genNm+")"
+                dtCapture2.push(element2);
+                console.log(element);
+            }
+        }
+
+        // if found now check if exists in display
+        if (found) {
+            // loop in the existing list
+            for (let inx = 0; inx < exData.length; inx++) {
+                const element = exData[inx];
+                if (element.name === fName) {
+                    tempHold = exData
+                    tempHold = tempHold.concat(...dtCapture2);
+                    setExdata(tempHold);
+                    localStorage.setItem("dataInit", JSON.stringify(tempHold));
+                    ingInpt.current.value = "";
+                    return
+                }
+            }
+            // not found just insert
+            let tempHoldx = exData
+            tempHoldx = tempHoldx.concat(...dtCapture);
+            setExdata(tempHoldx);
+            localStorage.setItem("dataInit", JSON.stringify(tempHoldx));
+            ingInpt.current.value = "";
+            return
+        }
+
+        // now deal with it as non existen 
+        const randomNumber = Math.floor(Math.random() * 8);// Generate a random number between 0 and 7 (inclusive)
+        let selectedDt = "East Atlantic";
+        if (randomNumber>= 0 && sampleNames.length >= randomNumber) {
+            selectedDt = sampleNames[randomNumber];
+        }
+
+        // loop to find selected data and get its value
+        for (let inv = 0; inv < initialData.length; inv++) {
+            const element = initialData[inv];
+            if (element.name === selectedDt) {
+                element.rows = element.rows*1.132;
+                element.scalabilityInteraction = element.scalabilityInteraction*1.263;
+                element.name = fName;
+                element.color = "red";
+                dtCapture2.push(element);
+            }
+            
+        }
+        tempHold = exData;
+        tempHold = tempHold.concat(...dtCapture2);
+        setExdata(tempHold);
+        localStorage.setItem("dataInit", JSON.stringify(tempHold));
+        ingInpt.current.value = "";
+    }
+
     const delFun = (namex = "") => {
         if (_.isArray(exData)) {
             const holdTem = []
@@ -67,6 +162,21 @@ function NetworkPlotGra({
         setExdata(initialData[0])
     }
     const exTDataName = []
+
+    function removeFileExtension(fileName) {
+        // Find the last occurrence of '.' to determine the position of the file extension
+        const extensionIndex = fileName.lastIndexOf('.');
+        
+        // If there's no '.', return the original fileName
+        if (extensionIndex === -1) {
+            return fileName;
+        }
+        
+        // Extract the file name without the extension
+        const nameWithoutExtension = fileName.substring(0, extensionIndex);
+        
+        return nameWithoutExtension;
+    }
     return (
         <div className="NetworkPlotGraMain">
             <h3 className="NetworkPlotGRaHeader">
@@ -229,7 +339,7 @@ function NetworkPlotGra({
             </div>
             <div className="SettingsBubbleComponents">
                 <div className="SettingsbubbleButtonHolder">
-                <input style={{ display: 'none' }}  type="file" ref={ingInpt} name="image1" accept=".csv" multiple />
+                <input style={{ display: 'none' }} onChange={(e) => uploadDataset(e.target.files)}  type="file" ref={ingInpt} name="image1" accept=".csv" multiple />
                     <button className="SettingsbubbleButton" onClick={()=> OpenFiles()}>Upload Datasets</button>
                 </div>
                 <div className="DatasetsHistoryHolder">
