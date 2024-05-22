@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const sendToBackendPost = async (link, data) => {
     let ansbck;
-    ansbck = await axios.post('http://localhost:390'+link, data, {
+    ansbck = await axios.post(''+link, data, {
         headers: {
             'content-type': 'text/json',
         },
